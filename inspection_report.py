@@ -251,12 +251,7 @@ class Generator_md(Ssh):
                         use_rate = "%.1f" % use_rate + '%'
                         with open(f'{self.temp_dir}/a_{filename}.md', 'a', encoding='utf-8') as f:
                             f.write(description.format(self.ip, use_rate) + '\n')
-                elif command == '''grep "^SELINUX=" /etc/selinux/config''':
-                    self.generator_a(filename, max_value)
-                    current_value = data.split('=')[1].strip('\n')
-                    if current_value != max_value:
-                        with open(f'{self.temp_dir}/a_{filename}.md', 'a', encoding='utf-8') as f:
-                            f.write(description.format(self.ip, current_value) + '\n')
+
                 elif command == 'ulimit -n':
                     self.generator_a(filename, max_value)
                     current_value = int(data)
